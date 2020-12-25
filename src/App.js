@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import logo from "./logo.svg";
 import './App.css';
+
+import { Route, Switch } from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Header from "./components/Header";
+import ExampleFn from "./hooks-forms/BasicHook";
+
+function Error(){
+  return <h3>Page not found 404</h3>
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Header />
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/contact-us" component={Contact} />
+        <Route path="/effect" component={ExampleFn} />
+        <Route path="/" component={Home} exact />
+
+        <Route component={Error}/>
+      </Switch>
     </div>
   );
 }
